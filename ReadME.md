@@ -19,7 +19,7 @@ npm install discord-simple-anti-phishing
 const fs = require("fs");
 const { config } = require("dotenv");
 const { Client, Intents, Collection, MessageEmbed } = require("discord.js");
-const client = new Client({ intents: intents, partials: ['GUILD_MEMBER', 'REACTION', 'CHANNEL', 'MESSAGE'] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES,]);
 const { antiPhishing } = require('discord-simple-anti-phishing');
 
 config({ path: __dirname + "/.env" });
