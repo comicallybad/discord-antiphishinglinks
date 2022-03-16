@@ -12,7 +12,9 @@
     "discordantiphishing",
     "phishing",
     "scam",
-    "scamlinks"
+    "scamlinks",
+    "discord-anti-phishing",
+    "discord-antiphishing"
   ],
   "author": "ComicallyBad",
   "license": "MIT"
