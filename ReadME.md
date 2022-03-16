@@ -30,13 +30,13 @@ client.on('messageCreate', async message => {
     antiPhishing(message).then(res => {
         if(res){
             //Embed example
-            let embed = new MessageEmbed() 
-            .setColor("#FF0000)    
-            .setTitle("Phishing Link Detected")     
-            .setDescription("A phishing link has been detected.") 
-            .addField'User:',  `${res.message.author} ${res.message.author.id}`)
-            .addField('Link:', `||${res.link}||`)
-            .setThumbnail(res.message.author.displayAvatarURL());
+        let embed = new MessageEmbed()
+            .setColor("#FF0000")
+            .setTitle("Phishing Link Detected")
+            .setThumbnail(message.author.displayAvatarURL())
+            .setDescription("Phishing link detected. **DO NOT** open this link!")
+            .setFooter({ text: `Phishing link sent by ${message.member.displayName}`, iconURL: message.author.displayAvatarURL() })
+            .setTimestamp();
 
             message.channel.send({embeds: [embed]});
         }
