@@ -1,6 +1,6 @@
 {
   "name": "discord-antiphishinglinks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple package for discord to prevent phishing/scam links",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,10 @@
     "discord-anti-phishing",
     "discord-antiphishing"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comicallybad/discord-antiphishinglinks.git"
+  },
   "author": "ComicallyBad",
   "license": "MIT"
 }
