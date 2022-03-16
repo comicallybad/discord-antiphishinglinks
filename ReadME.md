@@ -44,7 +44,7 @@ client.on('messageCreate', async message => {
 
             if (logChannel) {
                 embed.addField('User', `Link sent by ${res.message.author} (${res.message.author.id})`);
-                message.channel.send({embeds: [embed]});
+                logChannel.send({embeds: [embed]});
             }
         }
     })
