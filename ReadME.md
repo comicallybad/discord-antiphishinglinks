@@ -29,16 +29,23 @@ client.login(process.env.TOKEN);
 client.on('messageCreate', async message => {
     antiPhishing(message).then(res => {
         if(res){
+            const logChannel = message.guild.channels.cache.find(c => c.name.includes("mod-logs"));
             //Embed example
-        let embed = new MessageEmbed()
-            .setColor("#FF0000")
-            .setTitle("Phishing Link Detected")
-            .setThumbnail(message.author.displayAvatarURL())
-            .setDescription(`Phishing link detected: ||${res.link}|| **DO NOT** open this link!`)
-            .setFooter({ text: `Phishing link sent by ${message.member.displayName}`, iconURL: message.author.displayAvatarURL() })
-            .setTimestamp();
+            let embed = new MessageEmbed()
+                .setColor("#FF0000")
+                .setTitle("Phishing Link Detected")
+                .setThumbnail(message.author.displayAvatarURL())
+                .setDescription(`Phishing link detected **DO NOT** open this link!`)
+                .addField('Link', `||${res.link}||`)
+                .setFooter({ text: `Phishing link sent by ${message.member.displayName}`, iconURL: message.author.displayAvatarURL() })
+                .setTimestamp();
 
             message.channel.send({embeds: [embed]});
+
+            if (logChannel) {
+                embed.addField('User', `Link sent by ${res.message.author} (${res.message.author.id})`);
+                message.channel.send({embeds: [embed]});
+            }
         }
     })
 })

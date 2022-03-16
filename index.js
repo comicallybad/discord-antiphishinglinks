@@ -5,7 +5,7 @@ exports.antiPhishing = async function (message) {
     if (!message.author && !message.content && !message.member) return;
 
     let links = []
-    for (const url of phishingLinks.domains) {
+    for (const url of phishingLinks.links) {
         if (message.content.includes(url)) {
             links.push(url);
             break;
@@ -15,14 +15,7 @@ exports.antiPhishing = async function (message) {
     if (links.length == 1) {
         message.delete().catch(err => err);
 
-        const linkFound = new Promise((resolve, reject) => {
-            let res = { message: message, link: links[0] }
-            resolve(res);
-        });
-    } else {
-        const linkNotFound = new Promise((resolve, reject) => {
-            let rej = { message: undefined, link: undefined }
-            reject(rej);
-        });
-    }
+        const linkFound = { message: message, link: links[0] }
+        return linkFound;
+    } else return undefined;
 }
