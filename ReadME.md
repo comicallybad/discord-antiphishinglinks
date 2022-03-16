@@ -1,4 +1,4 @@
-# discordAntiPhishing
+# discord-simple-anti-phishing
 
 ## Installation:
 
@@ -21,7 +21,7 @@ const fs = require("fs");
 const { config } = require("dotenv");
 const { Client, Intents, Collection, MessageEmbed } = require("discord.js");
 const client = new Client({ intents: intents, partials: ['GUILD_MEMBER', 'REACTION', 'CHANNEL', 'MESSAGE'] });
-const { antiPhishing } = require('discordAntiPhishing');
+const { antiPhishing } = require('discord-simple-anti-phishing');
 
 config({ path: __dirname + "/.env" });
 
