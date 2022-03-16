@@ -34,7 +34,7 @@ client.on('messageCreate', async message => {
             .setColor("#FF0000")
             .setTitle("Phishing Link Detected")
             .setThumbnail(message.author.displayAvatarURL())
-            .setDescription("Phishing link detected. **DO NOT** open this link!")
+            .setDescription(`Phishing link detected: ||${res.link}|| **DO NOT** open this link!`)
             .setFooter({ text: `Phishing link sent by ${message.member.displayName}`, iconURL: message.author.displayAvatarURL() })
             .setTimestamp();
 
