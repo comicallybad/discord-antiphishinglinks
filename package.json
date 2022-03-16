@@ -1,0 +1,19 @@
+{
+  "name": "discordantiphishing",
+  "version": "1.0.0",
+  "description": "A package for discord to prevent phishing/scam links",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "keywords": [
+    "discord",
+    "antiphishing",
+    "discordantiphishing",
+    "phishing",
+    "scam",
+    "scamlinks"
+  ],
+  "author": "ComicallyBad",
+  "license": "MIT"
+}
