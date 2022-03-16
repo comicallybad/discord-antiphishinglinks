@@ -20,7 +20,7 @@ const fs = require("fs");
 const { config } = require("dotenv");
 const { Client, Intents, Collection, MessageEmbed } = require("discord.js");
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES,]);
-const { antiPhishing } = require('npm i discord-antiphishinglinks');
+const { antiPhishing } = require('discord-antiphishinglinks');
 
 config({ path: __dirname + "/.env" });
 
