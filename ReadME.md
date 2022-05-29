@@ -10,7 +10,7 @@
 npm install discord.js@latest
 ```
 ```sh-session
-npm install discord-simple-anti-phishing
+npm install discord-antiphishinglinks@latest
 ```
 
 ## Usage:
