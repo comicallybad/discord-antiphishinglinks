@@ -18,8 +18,8 @@ npm install discord-antiphishinglinks@latest
 ```js
 const fs = require("fs");
 const { config } = require("dotenv");
-const { Client, Intents, Collection, MessageEmbed } = require("discord.js");
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES,]);
+const { Client, Intents, MessageEmbed } = require("discord.js");
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]);
 const { antiPhishing } = require('discord-antiphishinglinks');
 
 config({ path: __dirname + "/.env" });
@@ -30,6 +30,7 @@ client.on('messageCreate', async message => {
     antiPhishing(message).then(res => {
         if(res){
             const logChannel = message.guild.channels.cache.find(c => c.name.includes("mod-logs"));
+
             //Embed example
             let embed = new MessageEmbed()
                 .setColor("#FF0000")
@@ -42,6 +43,7 @@ client.on('messageCreate', async message => {
 
             message.channel.send({embeds: [embed]});
 
+            //Log channel embed example
             if (logChannel) {
                 embed.addField('User', `Link sent by ${res.message.author} (${res.message.author.id})`);
                 logChannel.send({embeds: [embed]});
