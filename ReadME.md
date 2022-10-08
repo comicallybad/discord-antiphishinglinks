@@ -16,39 +16,47 @@ npm install discord-antiphishinglinks@latest
 ## Usage:
 
 ```js
-const fs = require("fs");
-const { config } = require("dotenv");
-const { Client, Intents, MessageEmbed } = require("discord.js");
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]);
+const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 const { antiPhishing } = require('discord-antiphishinglinks');
 
-config({ path: __dirname + "/.env" });
-
-client.login(process.env.TOKEN);
+client.login("BOT-TOKEN");
 
 client.on('messageCreate', async message => {
-    antiPhishing(message).then(res => {
-        if(res){
+    //This  is good practice to check
+    if (!message || !message.guild) return;
+    if (!message.member) message.member = await message.guild.members.fetch(message).catch(err => err);
+
+    antiPhishing(message).then(found => {
+        //If a phishing link is found
+        if(found){
+            //Optional search for a log channel
             const logChannel = message.guild.channels.cache.find(c => c.name.includes("mod-logs"));
 
-            //Embed example
+            //Delete user's phishing message
+            message.delete().catch(err => err);     //Catch in case of "Unknown Message" error.
+
+            //Embed example with link marked as a spoiler
             let embed = new MessageEmbed()
                 .setColor("#FF0000")
                 .setTitle("Phishing Link Detected")
                 .setThumbnail(message.author.displayAvatarURL())
                 .setDescription(`Phishing link detected **DO NOT** open this link!`)
-                .addField('Link', `||${res.link}||`)
+                .addField('Link', `||${found.link}||`)
                 .setFooter({ text: `Phishing link sent by ${message.member.displayName}`, iconURL: message.author.displayAvatarURL() })
                 .setTimestamp();
 
+            //Send channel the Phishing Warning Embed
             message.channel.send({embeds: [embed]});
 
-            //Log channel embed example
+            //If log channel is found
             if (logChannel) {
-                embed.addField('User', `Link sent by ${res.message.author} (${res.message.author.id})`);
-                logChannel.send({embeds: [embed]});
-            }
+                //Add a field with more user information: 
+                //      message.author is an @ mention, therefore; clickable for easy banning
+                embed.addField('User', `Link sent by ${message.author} (${message.author.id})`);
+                return logChannel.send({embeds: [embed]});
+            } else return 
         }
-    })
-})
+    });
+});
 ```

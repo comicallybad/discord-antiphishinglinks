@@ -1,6 +1,6 @@
 {
   "name": "discord-antiphishinglinks",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple package for discord to prevent phishing/scam links",
   "main": "index.js",
   "scripts": {
