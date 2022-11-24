@@ -1,20 +1,35 @@
 {
   "name": "discord-antiphishinglinks",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple package for discord to prevent phishing/scam links",
   "main": "index.js",
   "scripts": {
     "test": "node ."
   },
+  "funding": {
+    "type": "individual",
+    "url": "https://linktr.ee/ComicallyBad"
+  },
+  "bugs": {
+    "url": "https://github.com/ComicallyBad/discord-antiphishinglinks/issues"
+  },
   "keywords": [
     "discord",
-    "antiphishing",
-    "discordantiphishing",
+    "discordjs",
+    "discord.js",
+    "discordmoderation",
+    "discord-moderation",
     "phishing",
+    "antiphishing",
+    "antiphishinglinks",
+    "discordantiphishing",
     "scam",
-    "scamlinks",
+    "antiscam",
+    "antiscamlinks",
+    "discord-antiphishing",
     "discord-anti-phishing",
-    "discord-antiphishing"
+    "discord-antiscam",
+    "discord-anti-scam"
   ],
   "repository": {
     "type": "git",
